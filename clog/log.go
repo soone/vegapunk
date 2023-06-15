@@ -66,6 +66,24 @@ func New(w io.Writer, level int64, prefix string, flag int) *CLog {
 	}
 }
 
+func (l *CLog) AutoRegistNotify(notifyInfo []map[string]any) {
+	if len(notifyInfo) > 0 {
+		for _, notify := range notifyInfo {
+			if enable, ok := notify["enable"].(bool); !ok || !enable {
+				continue
+			}
+
+			n, err := notification.NewNotify(notify)
+			if err != nil {
+				l.Errorf("[REGISTNOTIFY]notify: %v, err: %s\n", notify, err.Error())
+				continue
+			}
+
+			l.RegistNotify(notify["name"].(string), n)
+		}
+	}
+}
+
 func (l *CLog) RegistNotify(name string, notify notification.Notification) {
 	if l.notification == nil {
 		l.notification = make(map[string]notification.Notification)
