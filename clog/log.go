@@ -7,8 +7,8 @@ import (
 	"os"
 	"sync/atomic"
 
-	"github.com/vegapunk/initialize"
-	"github.com/vegapunk/notification"
+	"github.com/soone/vegapunk/initialize"
+	"github.com/soone/vegapunk/notification"
 )
 
 const (
