@@ -34,7 +34,7 @@ type CLog struct {
 }
 
 func Default() *CLog {
-	return New(os.Stderr, LDEBUG, "[clog]", 0)
+	return New(os.Stderr, LDEBUG, "DEFAULT", 0)
 }
 
 func New(w io.Writer, level int64, prefix string, flag int) *CLog {
